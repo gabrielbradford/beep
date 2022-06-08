@@ -1,3 +1,8 @@
+beep/tests/test_files
+*.json
+*.json.gz
+beep/features/tests
+
 # Local file system
 .DS_Store
 .idea/*

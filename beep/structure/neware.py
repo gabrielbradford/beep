@@ -25,7 +25,7 @@ class NewareDatapath(BEEPDatapath):
         Returns:
             (NewareDatapath)
         """
-        ir_column_name = '"DCIR(O)"'
+        ir_column_name = "DCIR(O)"
         with open(filename, encoding="ISO-8859-1") as input:
             with ScratchDir("."):
                 cycle_header = input.readline().replace("\t", "")
@@ -56,7 +56,7 @@ class NewareDatapath(BEEPDatapath):
                 cycle_number = 0
                 step_number = 0
                 for row, line in enumerate(input):
-                    if line[:2] == r',"':
+                    if line[:2] == ",\t":
                         step_file.write(line)
                         step_number = line.split(",")[1]
                         ir_value = line.split(",")[ir_index]
@@ -87,6 +87,7 @@ class NewareDatapath(BEEPDatapath):
                 data["Capacitance_DChg(mAh)"] = data["Capacitance_DChg(mAh)"] / 1000
                 data["Engy_Chg(mWh)"] = data["Engy_Chg(mWh)"] / 1000
                 data["Engy_DChg(mWh)"] = data["Engy_DChg(mWh)"] / 1000
+                data["Temperature(C)"] = 20
 
                 # Deal with missing data in the internal resistance
                 data["DCIR(O)"] = data["DCIR(O)"].apply(
